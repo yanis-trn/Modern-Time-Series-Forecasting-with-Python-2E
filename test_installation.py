@@ -11,7 +11,15 @@ if is_gpu:
     )
 else:
     print("No GPU available! If you have a GPU and this message is wrong, please re-install PyTorch following instructions on https://pytorch.org/.")
-          
+
+if torch.backends.mps.is_available():
+    device = torch.device("mps")
+    print("✅ MPS (Apple Silicon GPU) is available!")
+else:
+    device = torch.device("cpu")
+    print("⚠️ No MPS backend available, using CPU.")
+
+
 import matplotlib.pyplot as plt
 import plotly.express as px
 import os
